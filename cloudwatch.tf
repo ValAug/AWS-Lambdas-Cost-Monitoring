@@ -12,8 +12,8 @@ resource "aws_cloudwatch_dashboard" "lambda_cost_dashboard" {
         height = 6,
         properties = {
           metrics = [
-            ["AWS/Lambda", "Duration", "FunctionName", "tu_lambda_function_name"],  # Reemplaza con el nombre de tu función Lambda
-            ["AWS/Lambda", "Cost", "FunctionName", "tu_lambda_function_name"]
+            ["AWS/Lambda", "Duration", "FunctionName", "${aws_lambda_function.my_lambda.function_name}"],  # Reemplaza con el nombre de tu función Lambda
+            ["AWS/Lambda", "Cost", "FunctionName", "${aws_lambda_function.my_lambda.function_name }"]
           ],
           title = "Costos y Duración de Lambda",
           period = 300,
@@ -29,14 +29,16 @@ resource "aws_cloudwatch_dashboard" "lambda_cost_dashboard" {
 resource "aws_cloudwatch_metric_alarm" "lambda_cost_alarm" {
   alarm_name          = "HighLambdaCost"
   comparison_operator = "GreaterThanThreshold"
-  evaluation_periods  = "1"
+  evaluation_periods  = "15"
+  datapoints_to_alarm = "15"
   metric_name        = "Duration"
   namespace          = "AWS/Lambda"
-  period             = "300"
+  period             = "60"
   statistic          = "Average"
-  threshold          = "1000"  # Cambia este umbral según tus necesidades
+  threshold          = "25000"  # Cambia este umbral según tus necesidades
+  treat_missing_data = "missing"
   dimensions = {
-    FunctionName = "tu_lambda_function_name"  # Reemplaza con el nombre de tu función Lambda
+    FunctionName = "${aws_lambda_function.my_lambda.function_name }"  # Reemplaza con el nombre de tu función Lambda
   }
 
   alarm_description = "Alarma para costos altos de Lambda"
