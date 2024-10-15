@@ -7,14 +7,11 @@
 ![Terraform](https://img.shields.io/badge/terraform-%235835CC.svg?style=for-the-badge&logo=terraform&logoColor=white)
 
 
-
 # Purpose
 
 Shows how to use AWS with Terraform to accomplish the following tasks:
 
-* How SecurityHub can assist you in examining your security patterns and pinpointing the most critical security concerns using Terraform
-
-
+* How CloudWatch Can Help You Monitor AWS Lambda Costs and How SNS Can Alert You using Terraform
 
 # Prerequisites
 
