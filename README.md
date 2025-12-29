@@ -1,70 +1,164 @@
-# AWS-Lambdas-Cost-Monitoring
+<div align="center">
 
-###### Cloud - :cloud:
-![AWS](https://img.shields.io/badge/AWS-%23FF9900.svg?style=for-the-badge&logo=amazon-aws&logoColor=white)
+# 🚨 AWS Lambda Cost Monitoring with Terraform  
+### Real-time visibility. Proactive alerts. Zero surprises.
 
-###### IaaC
-![Terraform](https://img.shields.io/badge/terraform-%235835CC.svg?style=for-the-badge&logo=terraform&logoColor=white)
+![AWS](https://img.shields.io/badge/AWS-Cloud-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white)
+![Terraform](https://img.shields.io/badge/Terraform-IaC-7B42BC?style=for-the-badge&logo=terraform&logoColor=white)
+![Status](https://img.shields.io/badge/Status-Demo%20Ready-success?style=for-the-badge)
+
+</div>
+
+---
+
+## 🧭 Overview
+
+**AWS-Lambdas-Cost-Monitoring** demonstrates how to build a **cost-aware, serverless monitoring solution** using **Amazon CloudWatch**, **SNS**, and **Terraform**.
+
+This project shows how to:
+- Monitor **AWS Lambda usage and cost signals**
+- Create **CloudWatch alarms** based on usage thresholds
+- Send **real-time notifications** using Amazon SNS
+- Manage everything using **Infrastructure as Code (Terraform)**
+
+> 💡 Designed for engineers who want **early cost visibility** before billing surprises happen.
+
+---
+
+## 🎯 What This Project Solves
+
+💥 *“Why did my Lambda bill spike?”*  
+💥 *“Which functions are running too often?”*  
+💥 *“How do I get alerted before costs get out of control?”*
+
+This repo answers all of the above.
+
+---
+
+## 🚀 Key Capabilities
+
+- **Cost-aware Monitoring**
+  - CloudWatch metrics track Lambda execution behavior
+- **Automated Alerts**
+  - SNS notifications triggered when thresholds are exceeded
+- **Infrastructure as Code**
+  - All alarms, topics, and permissions managed with Terraform
+- **Reusable & Extensible**
+  - Easy to adapt for additional services or environments
 
 
-# Purpose
+---
 
-Shows how to use AWS with Terraform to accomplish the following tasks:
+## 🧰 Prerequisites
 
-* How CloudWatch Can Help You Monitor AWS Lambda Costs and How SNS Can Alert You using Terraform
+Before deploying, ensure you have:
 
-# Prerequisites
+* ✅ Terraform installed
+  👉 [https://learn.hashicorp.com/tutorials/terraform/install-cli](https://learn.hashicorp.com/tutorials/terraform/install-cli)
+* ✅ AWS CLI configured (`aws configure`)
+* ✅ An AWS account with permissions for:
 
-* You must have Terraform installed [How to install terraform guide](https://learn.hashicorp.com/tutorials/terraform/install-cli)
+  * CloudWatch
+  * SNS
+  * IAM
 
-# Cautions
+---
 
-* As an AWS best practice, grant this code least privilege, or only the 
-  permissions required to perform a task. For more information, see 
-  [Grant Least Privilege](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html#grant-least-privilege) 
-  in the *AWS Identity and Access Management 
-  User Guide*.
-* This code has been tested in us-west-1 AWS Regions only. However it should work in any other region. 
-* Running this code __it might__ result in charges to your AWS account.
+## ⚠️ Cautions & Best Practices
 
-# How to run this code
+* Follow **least-privilege IAM principles** at all times
+  👉 [https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html#grant-least-privilege](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html#grant-least-privilege)
 
-- [How to run this code](#how-to-run-this-code)
-  - [Quick Start](#quick-start)
-  - [Quick Destroy](#quick-destroy)
-  - [Notes](#notes)
+* Tested in **us-west-1**, but should work in other regions
 
-## Quick Start
+* Deploying resources **may incur AWS charges**
 
-It will deploy to the account setup for the aws cli called 'default' or 'profile' set it
+> ⚠️ Always review alarm thresholds carefully to avoid excessive notifications.
+
+---
+
+## ▶️ Deployment with Terraform
+
+### 🚀 Quick Start
+
+Deploys into the AWS CLI **default profile** (or a named profile if configured).
 
 ```bash
-clone this repo
-cd AWS-lambdas-Cost-Monitoring
+git clone <this-repo>
+cd AWS-Lambdas-Cost-Monitoring
 terraform init
 terraform validate
 terraform plan
 terraform apply --auto-approve
 ```
 
-## Quick Destroy
+This will:
+
+* Initialize Terraform
+* Validate the configuration
+* Create CloudWatch alarms
+* Configure SNS notifications
+
+---
+
+### 💣 Quick Destroy
+
+Remove all deployed resources:
 
 ```bash
 terraform destroy --auto-approve
 ```
 
-## Notes
+---
 
-- clone this repo
-- cd to the the directory AWS-lambdas-Cost-Monitoring
-- use terraform __init__ command prepare your working directory for other commands
-- terraform __validate__ command check whether the configuration is valid
-- terraform __plan__ command show changes required by the current configuration
-- terraform __apply__ create or update infrastructure
-- Alternate command : terraform apply -auto-approve
-- terraform __destroy__ destroy previously-created infrastructure
-- Alternate command : terraform destroy -auto-approve
-- terraform __fmt__ reformat your configuration in the standard style
+## 📝 Terraform Command Reference
 
+| Command              | Purpose                        |
+| -------------------- | ------------------------------ |
+| `terraform init`     | Prepare working directory      |
+| `terraform validate` | Validate configuration         |
+| `terraform plan`     | Preview infrastructure changes |
+| `terraform apply`    | Create/update resources        |
+| `terraform destroy`  | Tear down infrastructure       |
+| `terraform fmt`      | Format Terraform files         |
 
-```
+---
+
+## 🧠 How This Helps in the Real World
+
+* Catch runaway Lambda invocations early
+* Prevent unexpected billing spikes
+* Educate teams on cost-aware serverless design
+* Lay groundwork for advanced FinOps practices
+
+---
+
+## 🔮 Possible Enhancements
+
+* Add **per-function cost breakdown**
+* Integrate **AWS Budgets**
+* Push alerts to **Slack or Teams**
+* Add **multi-environment thresholds (dev/test/prod)**
+* Connect to **CI/CD pipelines**
+
+---
+
+## 📚 Resources
+
+* Amazon CloudWatch
+  [https://aws.amazon.com/cloudwatch/](https://aws.amazon.com/cloudwatch/)
+* Amazon SNS
+  [https://aws.amazon.com/sns/](https://aws.amazon.com/sns/)
+* AWS Lambda
+  [https://aws.amazon.com/lambda/](https://aws.amazon.com/lambda/)
+* Terraform AWS Provider
+  [https://registry.terraform.io/providers/hashicorp/aws/latest](https://registry.terraform.io/providers/hashicorp/aws/latest)
+
+---
+
+<div align="center">
+
+✨ Built with **Terraform** & **AWS**
+☁️ Cost-aware by design • 🔔 Alert-driven • 📦 Infrastructure as Code
+
+</div>
